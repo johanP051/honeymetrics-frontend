@@ -1,0 +1,13 @@
+services:
+  ui:
+    build:
+      context: .
+      target: dev
+    container_name: hm_ui
+    networks:
+      - hm_network
+
+networks:
+  hm_network:
+    name: hm_network
+    external: true
