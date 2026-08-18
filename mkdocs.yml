@@ -1,0 +1,26 @@
+site_name: HoneyMetrics 2.0 — Frontend SPA
+site_description: Documentación de componentes, arquitectura y diseño para HoneyMetrics Frontend.
+site_author: Johan Posada & Pablo
+repo_url: https://github.com/johanP051/honeymetrics-frontend
+repo_name: johanP051/honeymetrics-frontend
+
+theme:
+  name: material
+  language: es
+  palette:
+    - scheme: slate
+      primary: amber
+      accent: deep orange
+
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - admonition
+
+nav:
+  - 🚀 Inicio: index.md
+  - 📘 Primeros Pasos: primeros_pasos.md
