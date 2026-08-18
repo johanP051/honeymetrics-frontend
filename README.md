@@ -5,7 +5,7 @@ Single Page Application (SPA) para visualización interactiva de **Cyber Threat 
 ---
 
 ## 🏛️ Arquitectura y Patrones de Diseño
-* **Framework:** React 18 + Vite.
+* **Framework:** React 18 + Vite con compilador **SWC** (Rust).
 * **Consumo de API:** Axios con **Mock Fallback automático** (`src/mocks/` y `src/hooks/useThreats.js`).
 * **Desacoplamiento Estricto:** Si el backend está caído, la UI entra en modo *Mock Offline* sin romperse.
 * **Componentes Atómicos:** Componentes en `src/components/` puramente presentacionales sin peticiones acopladas.
