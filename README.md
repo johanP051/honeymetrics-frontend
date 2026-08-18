@@ -1,29 +1,69 @@
 # 🍯 HoneyMetrics Frontend SPA (v2.0)
 
-Single Page Application (SPA) para visualización interactiva de **Cyber Threat Intelligence (CTI)** construida con **React + Vite**.
+Single Page Application (SPA) para visualización interactiva de **Cyber Threat Intelligence (CTI)** construida con **React 18**, **Vite** y el compilador **SWC (Rust)**.
+
+> 📖 **¿Eres nuevo en el proyecto o acabas de clonarlo?**  
+> Lee nuestra **[Guía de Primeros Pasos](./docs/primeros_pasos.md)** para empezar a programar en 5 minutos.
 
 ---
 
-## 🏛️ Arquitectura y Patrones de Diseño
-* **Framework:** React 18 + Vite con compilador **SWC** (Rust).
-* **Consumo de API:** Axios con **Mock Fallback automático** (`src/mocks/` y `src/hooks/useThreats.js`).
-* **Desacoplamiento Estricto:** Si el backend está caído, la UI entra en modo *Mock Offline* sin romperse.
-* **Componentes Atómicos:** Componentes en `src/components/` puramente presentacionales sin peticiones acopladas.
-* **Tipografía y Estilos:** CSS Variables, Google Fonts (*Plus Jakarta Sans* y *JetBrains Mono*), diseño de alto contraste Dark Cybersecurity.
+## 🚀 Inicio Rápido con Docker
+
+### 1. Clonar el repositorio
+```bash
+git clone git@github.com:johanP051/honeymetrics-frontend.git
+cd honeymetrics-frontend
+```
+
+### 2. Ejecutar en Modo Desarrollo (Live Reload + Fast Refresh)
+```bash
+docker compose up --build
+```
+* 🌐 **Aplicación Web:** [http://localhost:5173](http://localhost:5173)
+
+> 💡 **Modo Mock Offline:** Puedes programar toda la UI sin necesidad de tener el backend corriendo. Si la API no responde, la aplicación entra automáticamente en modo Mock sin fallar.
 
 ---
 
-## 🚀 Inicio Rápido en Local
+## 🏛️ Estructura del Proyecto
 
-1. **Instalar dependencias:**
-   ```bash
-   npm install
-   ```
+```
+honeymetrics-frontend/
+├── public/               # Iconos y archivos estáticos
+├── src/                  # Código fuente de React
+│   ├── api/              # Cliente Axios y llamadas a endpoints REST
+│   ├── components/       # Componentes UI organizados por dominio
+│   │   ├── layout/       # Barras de navegación y banners globales
+│   │   └── threats/      # Tarjetas de Threat Score y alertas CIDR
+│   ├── context/          # Estado global de la aplicación (Auth)
+│   ├── hooks/            # Custom Hooks (useThreats con fallback Mock)
+│   ├── mocks/            # Datos simulados basados en 165k logs reales
+│   ├── pages/            # Vistas principales del dashboard
+│   ├── utils/            # Funciones de formateo y helpers
+│   ├── App.jsx           # Componente raíz
+│   └── main.jsx          # Punto de entrada ReactDOM
+├── docs/                 # Guías de desarrollo y primeros pasos
+├── Dockerfile            # Multi-stage: Dev (Node) / Prod (Nginx)
+├── docker-compose.yml    # Base común de Docker
+├── docker-compose.override.yml # Configuración de desarrollo local
+├── docker-compose.prod.yml     # Configuración de producción con Nginx
+├── nginx.conf            # Configuración de Nginx para SPA
+└── vite.config.js        # Configuración de Vite con compilador SWC
+```
 
-2. **Ejecutar servidor de desarrollo con Live Reload:**
-   ```bash
-   npm run dev
-   ```
+---
 
-3. **Abrir en el navegador:**
-   `http://localhost:5173`
+## 🚀 Modo Producción / Servidor Nginx Local
+
+Para compilar los estáticos optimizados y servirlos mediante Nginx:
+```bash
+docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
+```
+* 🌐 [http://localhost:8080](http://localhost:8080)
+
+---
+
+## 📚 Enlaces Útiles
+* 📘 [Guía de Primeros Pasos y Flujo de Trabajo](./docs/primeros_pasos.md)
+* 🦀 [Documentación de Vite + SWC](https://github.com/vitejs/vite-plugin-react-swc)
+* 🌐 [Repositorio Backend](https://github.com/johanP051/honeymetrics-backend)
