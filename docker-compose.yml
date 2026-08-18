@@ -4,6 +4,7 @@ services:
       context: .
       target: dev
     container_name: hm_ui
+    restart: "no"
     networks:
       - hm_network
 
