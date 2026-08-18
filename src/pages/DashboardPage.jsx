@@ -1,10 +1,8 @@
 import React from 'react';
 import { useThreats } from '../hooks/useThreats';
-import { Navbar } from '../components/Navbar';
-import { StatusBanner } from '../components/StatusBanner';
-import { ThreatScoreCard } from '../components/ThreatScoreCard';
-import { BotnetAlertBadge } from '../components/BotnetAlertBadge';
+import { Navbar, StatusBanner, ThreatScoreCard, BotnetAlertBadge } from '../components';
 import { Shield, Users, Radio, Bug } from 'lucide-react';
+import { formatNumber } from '../utils/formatters';
 
 export const DashboardPage = () => {
   const { data, loading, isMock, refetch, toggleMock } = useThreats();
@@ -23,7 +21,7 @@ export const DashboardPage = () => {
               <span className="card-title">Eventos Analizados</span>
               <Shield size={18} color="var(--accent-amber)" />
             </div>
-            <div className="stat-value">{data.total_analyzed_events?.toLocaleString()}</div>
+            <div className="stat-value">{formatNumber(data.total_analyzed_events)}</div>
             <span style={{ fontSize: '0.75rem', color: 'var(--text-dim)' }}>Abril a Agosto 2026</span>
           </div>
 
@@ -32,7 +30,7 @@ export const DashboardPage = () => {
               <span className="card-title">IPs Atacantes Únicas</span>
               <Users size={18} color="var(--accent-blue)" />
             </div>
-            <div className="stat-value">{data.unique_attacker_ips?.toLocaleString()}</div>
+            <div className="stat-value">{formatNumber(data.unique_attacker_ips)}</div>
             <span style={{ fontSize: '0.75rem', color: 'var(--text-dim)' }}>1.107 atacantes externos</span>
           </div>
 
@@ -53,7 +51,7 @@ export const DashboardPage = () => {
               <Bug size={18} color="#f43f5e" />
             </div>
             <div className="stat-value" style={{ color: '#f43f5e' }}>
-              {data.active_critical_cves_count?.toLocaleString()}
+              {formatNumber(data.active_critical_cves_count)}
             </div>
             <span style={{ fontSize: '0.75rem', color: 'var(--text-dim)' }}>Score CVSS ≥ 7.0 en kernel</span>
           </div>
